@@ -6,6 +6,25 @@
 
 {% block content %}
 
-<h1 class="titleMain">Add Post</h1>
 
+<h1 class="titleMain">Add Post</h1>
+<br>
+<form action="" method="POST">
+    <div class="shadow h-10 p-3 mb-5 bg-body rounded post">
+        <form action="" method="POST">
+            {{form.hidden_tag()}}
+            {{ form.title.label(class="form-label")}}
+            {{form.title(id="myTitulo", class="form-control")}}
+            <br>
+            {{ form.slug.label(class="form-label")}}
+            {{form.slug(id="mySlug", class="form-control")}}
+            <br>
+            {{ form.content.label(class="form-label")}}
+            {{form.content(id="ckeditor2", class="form-control")}}
+            <br>
+            {{form.submit(class="btn btn-primary")}}
+        </form>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='content') }}
+        </div>
 {% endblock %}

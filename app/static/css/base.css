@@ -1,0 +1,20 @@
+body{
+    background:var(--color-body)
+}
+.myNavbar{
+    background-color:var(--color-navbar);
+}
+.li_NavbarI{
+    color:var(--color-itemNavbarI);
+    font-weight: 500;
+    font-size: 1.3rem;
+
+}
+.li_NavbarII{
+    color:var(--color-itemNavbarII);
+    font-weight: 500;
+}
+
+.myNavbar{
+    background-color: var(--color-navbar);
+}
