@@ -41,3 +41,8 @@ body{
     background: var(--color-contenedor)
     /* background: wheat; */
 }
+
+#responsive{
+    max-width: 100%;
+    height:auto
+}
