@@ -17,7 +17,7 @@ class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
 class TestingConfig(Config):
-    DEBUG = False
+    DEBUG = True
     SQLALCHEMY_DATABASE_URI = DATABASE_CONNECTION_URI
 
 

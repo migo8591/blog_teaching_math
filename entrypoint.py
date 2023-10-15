@@ -6,7 +6,7 @@ configuracion1= config['development']
 configuracion2 = config['production']
 configuracion3 = config['testing']
 
-myApp=create_app(configuracion1)
+myApp=create_app(configuracion3)
 
 if __name__ == '__main__':
     myApp.run()
