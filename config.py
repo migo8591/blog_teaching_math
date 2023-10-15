@@ -6,9 +6,8 @@ password = os.environ['MYSQL_PASSWORD']
 host = os.environ['MYSQL_HOST']
 database = os.environ['MYSQL_DATABASE']
 myKeyword = os.environ['CLAVE']
-
-DATABASE_CONNECTION_URI = f"mysql://{user}:{password}@{host}/{database}"
-
+# DATABASE_CONNECTION_URI = f"mysql://{user}:{password}@{host}/{database}"
+DATABASE_CONNECTION_URI = os.environ['CONEXION']
 class Config:
     SECRET_KEY = myKeyword
 
