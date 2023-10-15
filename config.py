@@ -6,20 +6,24 @@ password = os.environ['MYSQL_PASSWORD']
 host = os.environ['MYSQL_HOST']
 database = os.environ['MYSQL_DATABASE']
 myKeyword = os.environ['CLAVE']
-# DATABASE_CONNECTION_URI = f"mysql://{user}:{password}@{host}/{database}"
 DATABASE_CONNECTION_URI = os.environ['CONEXION']
 class Config:
     SECRET_KEY = myKeyword
 
 class DevelopmentConfig(Config):
     DEBUG = True
-
-
+    SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
 class ProductionConfig(Config):
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
+class TestingConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = DATABASE_CONNECTION_URI
+
 
 config = {
     'development': DevelopmentConfig,
     'default': DevelopmentConfig,
-    'production': ProductionConfig
+    'production': ProductionConfig,
+    'testing': TestingConfig
 }
