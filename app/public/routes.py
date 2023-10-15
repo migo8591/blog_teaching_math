@@ -8,7 +8,8 @@ from ..extensions import db
 
 @public_bp.route("/")
 def index():
-    return render_template("public/index.html")
+    publicaciones=Posts.query.order_by(Posts.date_posted)
+    return render_template("public/index.html", posts=publicaciones)
 
 @public_bp.route("/addPost", methods=['GET', 'POST'])
 def addPost():

@@ -7,7 +7,19 @@
 {% block content %}
 
 <h1 class="titleMain">Posts de la comunidad</h1>
+{% for post in posts %}
+<div class="shadow p-3 mb-2 bg-body rounded">
 
+        <h4>{{post.title}}</h4>
+
+</div>
+{% else %}
+<h2>There aren't posts...</h2>
+<script>
+    var myTitle = document.querySelector("#title")
+    myTitle.style.display="none"
+</script>
+{% endfor%}
 {% endblock %}
 
 
