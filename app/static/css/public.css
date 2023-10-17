@@ -1,0 +1,14 @@
+.conten{
+    height: 100%;
+    background: var(--color-contenedor);
+    background: wheat
+}
+.caja {
+	width: 90%;
+    height: 200px;
+	max-width: 1000px;
+	margin: 10px auto 10px auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 40px;
+}
