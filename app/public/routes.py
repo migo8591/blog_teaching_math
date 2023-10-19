@@ -22,7 +22,7 @@ def addPost():
         db.session.add(post)
         db.session.commit()
         flash("Blog Post Submitted Successfully!")
-        response = redirect(url_for('public.index')) 
+        response = redirect(url_for('public.post', id=post.id)) 
         return response
     return render_template("public/addPost.html", form=form)
 @public_bp.route("/post<int:id>")

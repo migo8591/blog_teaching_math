@@ -8,8 +8,15 @@
 {% endblock %}
 
 {% block content %}
+<br>
+{% for message in get_flashed_messages() %}
+  <div id="flash-message" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{ message }} </strong> 
+  </div>
+{% endfor %}
 
-<h1 class="titleMain">Posts de la comunidad</h1>
+<h1 class="titleMain">Posts del blog...</h1>
 <div class="caja" id="caja">
 {% for post in posts %}
     <div  id="conten" class="shadow p-3 mb-2 rounded conten">

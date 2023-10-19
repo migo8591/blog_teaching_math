@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block meta %}{% endblock %}
+{% block title %} Perfil {{current_user.username}} {% endblock %}
+{% include 'navbar.html' %}
+{% block content %}
+<h1 class="titleMain"> Usuario: <span style="color:var(--color-itemNavbarII);">{{current_user.username}}</span></h1>
+{% for message in get_flashed_messages() %}
+    <div id="flash-message" class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>{{ message }} </strong> 
+    </div>
+{% endfor %}
+<br>
+<!-- {% if login_successful %}
+<div class="alert alert-success">
+    ¡Bienvenido amigos!
+</div>
+{% endif %} -->
+<div class="card">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <strong>Name: </strong>{{current_user.name}}<br>
+                    <strong>Username: </strong>{{current_user.username}}<br>
+                    <strong>Email: </strong>{{current_user.email}}<br>
+                    <strong>Date Joined: </strong>{{current_user.date_added}}<br>
+                    <strong>About me: </strong>{{current_user.about_me}}<br>
+
+      
+                </div>
+                <div class="col-4">
+                    <img src="{{url_for('static', filename='images/picture.png')}}" alt="foto del perfil" width="200" align="right" >
+                </div>
+            </div>
+        </div>
+        <!-- <p class="card-text">Text</p> -->
+
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
