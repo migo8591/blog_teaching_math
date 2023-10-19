@@ -19,7 +19,7 @@ class Users(db.Model, UserMixin):
     # profile_pic=db.Column(db.String(120), nullable=True)
     date_added=db.Column(db.DateTime, default=datetime.utcnow)
     password_hash = db.Column(db.String(150))
-    posts = db.relationship('Posts', backref='poster')
+    # posts = db.relationship('Posts', backref='poster')
 
     # The serialize method converts the object to a dictionary
     def serialize(self):

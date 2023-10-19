@@ -16,14 +16,24 @@
               
           </ul>
           <ul class="navbar-nav ms-auto">
+            {% if current_user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link li_NavbarIV" href="#">Login</a>
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.dashboard')}}">Usuario: <span class="li_NavbarIII">{{user.username}}</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link li_NavbarIV" href="#">Registrarse</a>
+            <li class="nav-item active">
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.logout')}}">Logout</a>
             </li>
 
-            
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.sign')}}">Register</a>
+            </li>
+
+            {% endif %}
+           
           </ul>
         
 
