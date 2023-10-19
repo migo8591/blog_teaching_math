@@ -26,5 +26,21 @@
         </form>
         {{ ckeditor.load() }}
         {{ ckeditor.config(name='content') }}
+        <script>
+            // var mySubmit = document.querySelector("#mySubmit")
+            // mySubmit.addEventListener("click", ()=>{
+            //     document.getElementById("myInput").value=""
+            // })
+            window.onload = function() {
+            var inputTitulo = document.getElementById("myTitulo");  // Reemplaza "name" con el id del campo de entrada.
+            inputTitulo.focus();
+            inputTitulo.value = '';  
+            var inputSlug = document.getElementById("mySlug")
+            inputSlug.value = '';  
+            var inputContent = document.getElementById("myContent")
+            inputContent.value = '';  
+        }
+    
+        </script>
         </div>
 {% endblock %}
