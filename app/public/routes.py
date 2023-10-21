@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, url_for
+from flask_login import login_required, current_user
 from . import public_bp
 from .webforms import PostForm
 from app.models import Posts
@@ -12,10 +13,12 @@ def index():
     return render_template("public/index.html", posts=publicaciones)
 
 @public_bp.route("/addPost", methods=['GET', 'POST'])
+@login_required
 def addPost():
     form = PostForm()
     if form.validate_on_submit():
-        post = Posts(title=form.title.data, content=form.content.data,slug=form.slug.data)
+        poster=current_user.id
+        post = Posts(title=form.title.data, content=form.content.data,slug=form.slug.data, poster_id=poster)
         form.title.data = ''
         form.content.data = ''
         form.slug.data = ''

@@ -17,8 +17,11 @@
           </ul>
           <ul class="navbar-nav ms-auto">
             {% if current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link li_NavbarIV" href="{{url_for('auth.dashboard')}}">Usuario: <span class="li_NavbarIII">{{user.username}}</span></a>
+            <li   class="nav-item">
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.dashboard')}}">Usuario: <span id="user" class="link li_NavbarII">{{user.username}}</span>
+              
+                <div id="myLink"></div>
+              </a>
             </li>
             <li class="nav-item active">
               <a class="nav-link li_NavbarIV" href="{{url_for('auth.logout')}}">Logout</a>
