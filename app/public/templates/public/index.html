@@ -21,7 +21,10 @@
 {% for post in posts %}
     <div  id="conten" class="shadow p-3 mb-2 rounded conten">
         <h4><a href="{{url_for('public.post', id=post.id)}}">{{post.title}}</a></h4>
-        <small><b>By:</b> {{ post.slug}} </small>
+        <small>
+        <b>By:</b> {{post.poster.name}}
+        <b>Slug:</b> {{ post.slug}}
+      </small>
     </div>
     {% else %}
     <h2>There aren't posts...</h2>
