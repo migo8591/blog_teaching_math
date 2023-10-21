@@ -2,10 +2,10 @@
 
 {% block title %} Home {% endblock %}
 
-{% include 'navbar.html' %}
 {% block css %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/public.css')}}">
 {% endblock %}
+{% include 'navbar.html' %}
 
 {% block content %}
 <br>

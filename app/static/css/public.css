@@ -12,3 +12,17 @@
 	grid-template-columns: repeat(4, 1fr);
 	gap: 40px;
 }
+.titleMain{
+    color: var(--color-tituloPrincipal);
+    margin: 20px 0px;
+    text-align: center;
+}
+.tituloPost{
+	color: var(--color-tituloPrincipal)
+}
+.notePost{
+	margin-top: 1.1rem;
+	color: var(--color-itemNavbarII);
+	font-weight: 700;
+	text-align: center;
+}

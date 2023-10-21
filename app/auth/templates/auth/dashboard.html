@@ -1,6 +1,9 @@
 {% extends 'base.html' %} 
 {% block meta %}{% endblock %}
 {% block title %} Perfil {{current_user.username}} {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+{% endblock %}
 {% include 'navbar.html' %}
 {% block content %}
 <h1 class="titleMain"> Usuario: <span style="color:var(--color-itemNavbarII);">{{current_user.username}}</span></h1>

@@ -22,6 +22,10 @@ body{
     color:var(--color-itemNavbarI);
     font-weight: 500;
 }
+
+#profile:hover{
+    color:palevioletred;
+}
 #imageLoco{
     width: 65px;
     height: 65px;
@@ -30,12 +34,15 @@ body{
 .myNavbar{
     background-color: var(--color-navbar);
 }
-.titleMain{
-    color:#662549;
-    margin: 20px 0px;
-    text-align: center;
-}
 
+
+#myLink{
+    background: var(--color-itemNavbarIII);
+    width: 100%;
+    height: 3px;
+    margin-top: 0.01rem;
+    
+}
 
 
 #responsive{
