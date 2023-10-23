@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_required, current_user
 from . import public_bp
-from .webforms import PostForm
+from .webforms import PostForm, SearchForm
 from app.models import Posts
 from ..extensions import db
 
@@ -62,7 +62,19 @@ def deletePost(id):
      db.session.delete(postDelete)
      db.session.commit()
      flash("¡Post fue eliminado...!")
-     return redirect(url_for('public.index'))
+# @public_bp.context_processor
+# def base():
+#     form = SearchForm()
+#     return dict(form=form)
+@public_bp.route('/search', methods=["POST"])
+def search():
+    formulario = SearchForm()
+    posts = Posts.query
+    if formulario.validate_on_submit():
+        post.searched = formulario.search.data
+        posts = posts.filter(Posts.content.like('%'+post.searched+'%'))
+        posts = posts.order_by(Posts.title).all()
+        return render_template("public/search.html", form=formulario, searched=post.searched, posts=posts )
 # def deletePost(id):
 #     postDelete=Posts.query.get_or_404(id)
 #     ide=current_user.id

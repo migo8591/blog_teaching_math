@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin.css')}}">
+{% endblock %}
+{% block header %}
+  {% include 'navbar.html' %}
+  <!-- {% include 'Search.html' %} -->
+{% endblock %}
+{% block content %}
+ <h2 class="titleMain">Results for: {{searched}}</h2>
+ {% if posts%}
+    {% for post in posts %}
+        <a href="{{url_for('public.post', id=post.id)}}">{{post.title}}</a> <br>
+    {% endfor %}
+  {% else %}
+    Sorry, your search term: <strong><em>{{searched}}</em></strong> was not found
+  {% endif%}
+{% endblock %}
+
+

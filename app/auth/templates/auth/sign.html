@@ -1,8 +1,13 @@
 {% extends 'base.html' %} 
+{% block title %}Register {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+{% endblock %}
+
 {% include 'navbar.html' %}
 {% block content %}
 <br>
-<h1>Sign in</h1>
+<h1 class="titleMain">Sign in</h1>
 <br>
 <div class="shadow p-3 mb-5 bg-body rounded">
     <form action="" method="POST">
