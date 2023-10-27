@@ -30,7 +30,7 @@
           <ul class="navbar-nav ms-auto">
             {% if current_user.is_authenticated %}
             <li   class="nav-item">
-              <a class="nav-link li_NavbarIV" href="{{url_for('auth.dashboard')}}">Usuario: <span id="user" class="link li_NavbarII">{{user.username}}</span>
+              <a class="nav-link li_NavbarIV" href="{{url_for('auth.dashboard', id=user.id)}}">Usuario: <span id="user" class="link li_NavbarII">{{user.id}}</span>
               
                 <div id="myLink"></div>
               </a>
