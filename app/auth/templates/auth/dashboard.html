@@ -8,7 +8,7 @@
 {% block content %}
 
 {% for message in get_flashed_messages() %}
-    <div id="flash-message" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+    <div id="flash-message" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         <strong>{{ message }} </strong> 
     </div>
@@ -24,14 +24,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-8">
-                    <strong>Name: </strong>{{profile.id
-                    }}<br>
+                    <strong>Name: </strong>{{profile.name}}<br>
                     <strong>Username: </strong>{{profile.username}}<br>
                     <strong>Email: </strong>{{profile.email}}<br>
                     <strong>Date Joined: </strong>{{profile.date_added}}<br>
                     <strong>About me: </strong>{{profile.about_me}}<br>
                     <div>
-                        <a href="{{url_for('auth.editProfile', id=profile.id)}}" class="btn btn-primary btn-sm">Update Profile</a>
+                        <a href="{{url_for('auth.editProfile', id=profile.id)}}" class="btn btn-primary btn-sm mt-2">Update Profile</a>
                     </div>
 
 

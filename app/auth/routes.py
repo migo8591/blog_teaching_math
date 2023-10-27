@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, session, request
 from flask_login import login_user, login_required, logout_user
-from .webforms import UserForm, LoginForm
+from .webforms import UserForm, LoginForm, UpdateForm
 from ..models import Users
 from ..extensions import db, bcrypt
 from . import auth_bp
@@ -48,7 +48,7 @@ def dashboard(id):
     return render_template("auth/dashboard.html", profile = perfil )
 @auth_bp.route("/editProfile/<int:id>", methods=['GET','POST'])
 def editProfile(id):
-    form = UserForm()
+    form = UpdateForm()
     profile = Users.query.get_or_404(id)
     if form.validate_on_submit():
         print("beguin testing")
@@ -61,6 +61,7 @@ def editProfile(id):
         flash("Profile had been updated")
         return  redirect(url_for('auth.dashboard', id=id))
     else:
+        print("middle testing")
         form.email.data=profile.email
         form.aboutme.data=profile.about_me
         return render_template('auth/profileEdit.html', form=form, id=id)
