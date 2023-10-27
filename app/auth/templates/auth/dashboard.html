@@ -24,11 +24,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-8">
-                    <strong>Name: </strong>{{current_user.name}}<br>
-                    <strong>Username: </strong>{{current_user.username}}<br>
-                    <strong>Email: </strong>{{current_user.email}}<br>
-                    <strong>Date Joined: </strong>{{current_user.date_added}}<br>
-                    <strong>About me: </strong>{{current_user.about_me}}<br>
+                    <strong>Name: </strong>{{profile.id
+                    }}<br>
+                    <strong>Username: </strong>{{profile.username}}<br>
+                    <strong>Email: </strong>{{profile.email}}<br>
+                    <strong>Date Joined: </strong>{{profile.date_added}}<br>
+                    <strong>About me: </strong>{{profile.about_me}}<br>
+                    <div>
+                        <a href="{{url_for('auth.editProfile', id=profile.id)}}" class="btn btn-primary btn-sm">Update Profile</a>
+                    </div>
+
 
       
                 </div>

@@ -40,12 +40,31 @@ def login():
             flash("That User Doesn't Exist! Try Again...")        
     our_users = Users.query.order_by(Users.date_added)
     return render_template("auth/login.html",form =form, usuarios=our_users) 
-@auth_bp.route("/dashboard")
+@auth_bp.route("/dashboard/<int:id>", methods=['GET','POST'])
 @login_required
-def dashboard():
-    # login_successful = session.pop('login_successful', False)
-    login_successful = session.pop('login_successful', True)
-    return render_template("auth/dashboard.html")
+def dashboard(id):
+    print(id)
+    perfil = Users.query.get_or_404(id)
+    return render_template("auth/dashboard.html", profile = perfil )
+@auth_bp.route("/editProfile/<int:id>", methods=['GET','POST'])
+def editProfile(id):
+    form = UserForm()
+    profile = Users.query.get_or_404(id)
+    if form.validate_on_submit():
+        print("beguin testing")
+        print(form.email.data)
+        print(form.aboutme.data)
+        print("Finish testing")
+        profile.email=form.email.data
+        profile.about_me=form.aboutme.data
+        db.session.commit()
+        flash("Profile had been updated")
+        return  redirect(url_for('auth.dashboard', id=id))
+    else:
+        form.email.data=profile.email
+        form.aboutme.data=profile.about_me
+        return render_template('auth/profileEdit.html', form=form, id=id)
+
 
 
 @auth_bp.route("/logout")
