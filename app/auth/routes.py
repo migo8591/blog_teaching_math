@@ -4,6 +4,9 @@ from .webforms import UserForm, LoginForm, UpdateForm
 from ..models import Users
 from ..extensions import db, bcrypt
 from . import auth_bp
+from werkzeug.utils import secure_filename
+import uuid as uuid
+import os
 
 
 @auth_bp.route("/sign", methods=['GET','POST'])
@@ -57,9 +60,17 @@ def editProfile(id):
         print("Finish testing")
         profile.email=form.email.data
         profile.about_me=form.aboutme.data
-        db.session.commit()
-        flash("Profile had been updated")
-        return  redirect(url_for('auth.dashboard', id=id))
+        profile.profile_pic=request.files['profilePic']
+        pic_filename = secure_filename(profile.profile_pic.filename)
+        pic_name = str(uuid.uuid1())+"_"+pic_filename
+        profile.profile_pic=pic_name
+        try:
+            db.session.commit()
+            flash("Profile had been updated")
+            return  redirect(url_for('auth.dashboard', id=id))
+        except:
+            flash("Error! Looks like there was an error")
+            return render_template("dashboard.html")
     else:
         print("middle testing")
         form.email.data=profile.email

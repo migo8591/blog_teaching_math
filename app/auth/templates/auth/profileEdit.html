@@ -9,13 +9,16 @@
 {% block content %}
 <h2 class="titleMain">Edit Profile...</h2>
 <div class="shadow p-3 mb-5 bg-body rounded">
-    <form action="{{url_for('auth.editProfile', id=id)}}" method="POST">
+    <form action="{{url_for('auth.editProfile', id=id)}}" method="POST" enctype="multipart/form-data">
         {{form.hidden_tag()}}
         {{ form.email.label(class="form-label")}}
         {{form.email(class="form-control")}}
         <br>
         {{ form.aboutme.label(class="form-label")}}
         {{form.aboutme(class="form-control")}}
+        <br>
+        {{ form.profilePic.label(class="form-label")}}
+        {{form.profilePic(class="form-control")}}
         <br>
         {{form.submit(class="btn btn-primary")}}
     </form>
