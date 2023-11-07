@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, session, request
+from flask import render_template, flash, redirect, url_for, session, request, current_app
 from flask_login import login_user, login_required, logout_user
 from .webforms import UserForm, LoginForm, UpdateForm
 from ..models import Users
@@ -60,9 +60,19 @@ def editProfile(id):
         print("Finish testing")
         profile.email=form.email.data
         profile.about_me=form.aboutme.data
-        profile.profile_pic=request.files['profilePic']
+        # Actually pulling in the file
+        profile.profile_pic=request.files['post_image']
+        #Grab Image name
         pic_filename = secure_filename(profile.profile_pic.filename)
+        #Set UUID
         pic_name = str(uuid.uuid1())+"_"+pic_filename
+        #Se crea el directorio si no existe
+        # images_dir = current_app.config['POSTS_IMAGES_DIR']
+        # os.makedirs(images_dir, exist_ok=True)
+        # file_path = os.path.join(images_dir, pic_name)
+        # file.save(file_path)
+        #Saving the imagen as bald:
+        profile.profile_pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'], pic_name))
         profile.profile_pic=pic_name
         try:
             db.session.commit()
