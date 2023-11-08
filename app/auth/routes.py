@@ -59,21 +59,11 @@ def editProfile(id):
         profile.about_me=form.aboutme.data
         profile.profile_pic=None
         if 'post_image' in request.files:       
-        # Actually pulling in the file
             archivo=request.files['post_image']
             if archivo.filename:
-                #Grab Image name
                 pic_filename = secure_filename(archivo.filename)
-                #Set UUID
                 pic_name = str(uuid.uuid1())+"_"+pic_filename
-        #Se crea el directorio si no existe
-        # images_dir = current_app.config['POSTS_IMAGES_DIR']
-        # os.makedirs(images_dir, exist_ok=True)
-        # file_path = os.path.join(images_dir, pic_name)
-        # file.save(file_path)
-        #Saving the imagen as bald:
                 archivo.save("app/static/pic/"+pic_name)
-        # profile.profile_pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'], pic_name))
                 profile.profile_pic=pic_name
         print(eraser)
         if os.path.exists("app/static/pic/"+str(eraser)):
