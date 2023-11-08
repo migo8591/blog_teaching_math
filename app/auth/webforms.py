@@ -16,6 +16,7 @@ class UserForm(FlaskForm):
 class UpdateForm(FlaskForm):
     email=StringField("Email", validators=[DataRequired(), Email()])
     aboutme=StringField("About me")
+    post_image= FileField("Profile Pic")
     submit=SubmitField("Submit") 
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])

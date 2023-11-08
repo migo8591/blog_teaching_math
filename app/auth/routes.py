@@ -1,9 +1,12 @@
-from flask import render_template, flash, redirect, url_for, session, request
+from flask import render_template, flash, redirect, url_for, session, request, current_app, send_from_directory
 from flask_login import login_user, login_required, logout_user
 from .webforms import UserForm, LoginForm, UpdateForm
 from ..models import Users
 from ..extensions import db, bcrypt
 from . import auth_bp
+from werkzeug.utils import secure_filename
+import uuid as uuid
+import os
 
 
 @auth_bp.route("/sign", methods=['GET','POST'])
@@ -50,16 +53,38 @@ def dashboard(id):
 def editProfile(id):
     form = UpdateForm()
     profile = Users.query.get_or_404(id)
+    eraser = profile.profile_pic
     if form.validate_on_submit():
-        print("beguin testing")
-        print(form.email.data)
-        print(form.aboutme.data)
-        print("Finish testing")
         profile.email=form.email.data
         profile.about_me=form.aboutme.data
-        db.session.commit()
-        flash("Profile had been updated")
-        return  redirect(url_for('auth.dashboard', id=id))
+        profile.profile_pic=None
+        if 'post_image' in request.files:       
+        # Actually pulling in the file
+            archivo=request.files['post_image']
+            if archivo.filename:
+                #Grab Image name
+                pic_filename = secure_filename(archivo.filename)
+                #Set UUID
+                pic_name = str(uuid.uuid1())+"_"+pic_filename
+        #Se crea el directorio si no existe
+        # images_dir = current_app.config['POSTS_IMAGES_DIR']
+        # os.makedirs(images_dir, exist_ok=True)
+        # file_path = os.path.join(images_dir, pic_name)
+        # file.save(file_path)
+        #Saving the imagen as bald:
+                archivo.save("app/static/pic/"+pic_name)
+        # profile.profile_pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'], pic_name))
+                profile.profile_pic=pic_name
+        print(eraser)
+        if os.path.exists("app/static/pic/"+str(eraser)):
+            os.unlink("app/static/pic/"+str(eraser))
+        try:
+            db.session.commit()
+            flash("Profile had been updated")
+            return  redirect(url_for('auth.dashboard', id=id))
+        except:
+            flash("Error! Looks like there was an error")
+            return render_template("dashboard.html")
     else:
         print("middle testing")
         form.email.data=profile.email
@@ -73,3 +98,7 @@ def logout():
     logout_user()
     flash("Closed Session...!")
     return redirect(url_for('auth.login'))
+
+@auth_bp.route('/img/<imagen>')
+def imagen_profile(imagen):
+    return send_from_directory(os.path.join('static/images/'),imagen)

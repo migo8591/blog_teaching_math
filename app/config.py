@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from os.path import abspath, dirname, join
 import os
 load_dotenv()
 user = os.environ['MYSQL_USER']
@@ -7,7 +8,14 @@ host = os.environ['MYSQL_HOST']
 database = os.environ['MYSQL_DATABASE']
 myKeyword = os.environ['CLAVE']
 DATABASE_CONNECTION_URI = os.environ['CONEXION']
+PICK_UP = 'static/images/'
 class Config:
+    # Define the application directory
+    # BASE_DIR = dirname(dirname(abspath(__file__)))
+    # Media dir
+    # MEDIA_DIR = join(BASE_DIR, 'media')
+    # POSTS_IMAGES_DIR = join(MEDIA_DIR, 'posts')
+    UPLOAD_FOLDER =PICK_UP
     SECRET_KEY = myKeyword
 
 class DevelopmentConfig(Config):
