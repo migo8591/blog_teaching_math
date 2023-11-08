@@ -32,18 +32,18 @@
                     <strong>Profile PIc: </strong>{{profile.profile_pic}}<br>
                     <div>
                         <a href="{{url_for('auth.editProfile', id=profile.id)}}" class="btn btn-primary btn-sm mt-2">Update Profile</a>
-                    </div>
-
-
-      
+                    </div>  
                 </div>
                 <div class="col-4">
-                    <img src="{{url_for('static', filename='images/picture.png')}}" alt="foto del perfil" width="200" align="right" >
+                    {% if profile.profile_pic !=None %}
+                    <img src="{{url_for('static', filename='pic/'+profile.profile_pic)}}" alt="foto del perfil {{profile.profile_pic}}" width="200" align="right" >
+                    {% else %}
+                    <img src="url_for('static', filename='images/picture.png')" alt="foto del perfil" width="200" align="right" >
+                    {% endif %}
                 </div>
             </div>
         </div>
         <!-- <p class="card-text">Text</p> -->
-
     </div>
 </div>
 {% endblock %}
