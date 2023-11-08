@@ -38,7 +38,7 @@
                     {% if profile.profile_pic !=None %}
                     <img src="{{url_for('static', filename='pic/'+profile.profile_pic)}}" alt="foto del perfil {{profile.profile_pic}}" width="200" align="right" >
                     {% else %}
-                    <img src="url_for('static', filename='images/picture.png')" alt="foto del perfil" width="200" align="right" >
+                    <img src="{{url_for('static', filename='images/picture.png')}}" alt="foto default" width="200" align="right" >
                     {% endif %}
                 </div>
             </div>

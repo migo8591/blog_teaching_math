@@ -56,21 +56,24 @@ def editProfile(id):
     if form.validate_on_submit():
         profile.email=form.email.data
         profile.about_me=form.aboutme.data
+        profile.profile_pic=None
+        if 'post_image' in request.files:       
         # Actually pulling in the file
-        archivo=request.files['post_image']
-        #Grab Image name
-        pic_filename = secure_filename(archivo.filename)
-        #Set UUID
-        pic_name = str(uuid.uuid1())+"_"+pic_filename
+            archivo=request.files['post_image']
+            if archivo.filename:
+                #Grab Image name
+                pic_filename = secure_filename(archivo.filename)
+                #Set UUID
+                pic_name = str(uuid.uuid1())+"_"+pic_filename
         #Se crea el directorio si no existe
         # images_dir = current_app.config['POSTS_IMAGES_DIR']
         # os.makedirs(images_dir, exist_ok=True)
         # file_path = os.path.join(images_dir, pic_name)
         # file.save(file_path)
         #Saving the imagen as bald:
-        archivo.save("app/static/pic/"+pic_name)
+                archivo.save("app/static/pic/"+pic_name)
         # profile.profile_pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'], pic_name))
-        profile.profile_pic=pic_name
+                profile.profile_pic=pic_name
         try:
             db.session.commit()
             flash("Profile had been updated")
