@@ -53,6 +53,7 @@ def dashboard(id):
 def editProfile(id):
     form = UpdateForm()
     profile = Users.query.get_or_404(id)
+    eraser = profile.profile_pic
     if form.validate_on_submit():
         profile.email=form.email.data
         profile.about_me=form.aboutme.data
@@ -74,6 +75,9 @@ def editProfile(id):
                 archivo.save("app/static/pic/"+pic_name)
         # profile.profile_pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'], pic_name))
                 profile.profile_pic=pic_name
+        print(eraser)
+        if os.path.exists("app/static/pic/"+str(eraser)):
+            os.unlink("app/static/pic/"+str(eraser))
         try:
             db.session.commit()
             flash("Profile had been updated")

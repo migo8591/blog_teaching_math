@@ -14,10 +14,34 @@
 {% endfor %}
 <div class="shadow p-3 mx-auto mt-3 mb-3 bg-body rounded">
     <h2 class="tituloPost">{{ post.title}}</h2>
-    <small><b>By: </b>{{post.poster.name}} | <b>{{ post.slug}} </b></small>
+    <small><b>Date: </b>{{post.poster.date_added}} | <b>Slug: </b>{{post.slug}} </small>
     <br>
     <hr>
     {{ post.content|safe}}
+    <hr>
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          {% if post.poster.profile_pic %}
+            <img src="{{url_for('static', filename='pic/'+post.poster.profile_pic)}}" alt="profile photo" width="150" align="left" >
+          {% else %}
+          <img src="{{url_for('static', filename='images/picture.png')}}" alt="foto default" width="200" align="left" >
+          {% endif %}
+        </div>
+        <div class="col-md-10">
+          <div id="dataUser" class="card-body">
+            <h5 class="card-title">{{post.poster.name}}</h5>
+            <p class="card-text">
+              {% if post.poster.about_me %}
+                {{post.poster.about_me}}
+              {% else %}
+                Author without description 
+              {% endif%}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <hr>
     <div>
         <a href="{{url_for('public.index')}}" class="btn btn-primary btn-sm">Ver Todos Posts</a>
