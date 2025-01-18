@@ -2,13 +2,14 @@ from dotenv import load_dotenv
 from os.path import abspath, dirname, join
 import os
 load_dotenv()
-user = os.environ['MYSQL_USER']
-password = os.environ['MYSQL_PASSWORD']
-host = os.environ['MYSQL_HOST']
-database = os.environ['MYSQL_DATABASE']
+# user = os.environ['MYSQL_USER']
+# password = os.environ['MYSQL_PASSWORD']
+# host = os.environ['MYSQL_HOST']
+# database = os.environ['MYSQL_DATABASE']
 myKeyword = os.environ['CLAVE']
 DATABASE_CONNECTION_URI = os.environ['CONEXION']
 PICK_UP = 'static/images/'
+
 class Config:
     # Define the application directory
     # BASE_DIR = dirname(dirname(abspath(__file__)))
@@ -20,10 +21,12 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
+    # SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
+    SQLALCHEMY_DATABASE_URI = DATABASE_CONNECTION_URI
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
+    # SQLALCHEMY_DATABASE_URI = f"mysql://{user}:{password}@{host}/{database}"
+    SQLALCHEMY_DATABASE_URI = DATABASE_CONNECTION_URI
 class TestingConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = DATABASE_CONNECTION_URI
